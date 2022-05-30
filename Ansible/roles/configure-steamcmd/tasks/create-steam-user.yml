@@ -1,0 +1,17 @@
+---
+#Role for creating the steam user if it doesn't already exist
+- name: Check whether the steam user already exists
+  shell: getent passwd steam | wc -l
+  register: isSteamUser
+
+- name: Message output for Steam user existing
+  debug:
+    msg: "Steam user already exists, NOT creating..."
+  when: isSteamUser.stdout == "1"
+
+- name: Create steam user (if it doesn't exist)
+  become: yes
+  user:
+    name: steam
+    password: "{{ pswdSteamUser | password_hash('sha512') }}"
+  when: isSteamUser.stdout == "0"

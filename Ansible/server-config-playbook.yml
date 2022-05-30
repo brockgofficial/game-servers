@@ -1,0 +1,19 @@
+---
+#MAIN COMMENT
+- name: Specific configuration for automating a game server of choice
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Role for setting up prereqs
+      include_role:
+        name: configure-prerequisites
+        tasks_from: main
+    - name: Role for installing SteamCMD
+      become: yes
+      include_role:
+        name: install-steamcmd
+        tasks_from: main
+    - name: Role for configuring the valheim server
+      include_role:
+        name: configure-valheim-server
+        tasks_from: main

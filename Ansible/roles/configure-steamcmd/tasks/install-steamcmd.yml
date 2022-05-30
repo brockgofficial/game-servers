@@ -1,0 +1,29 @@
+---
+- name: Install the library dependencies for SteamCMD
+  command: yum install glibc.i686 libstdc++.i686 -y
+
+- name: Create both a Steam and GameServers directory under the steam users home
+  file:
+    path: /home/steam/{{ item }}
+    state: directory
+    recurse: yes
+    owner: steam
+    group: steam
+  with_items:
+    - Steam
+    - GameServers
+
+- name: Get the SteamCMD files for installation
+  command: wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+  args:
+    chdir: /home/steam/
+
+- name: Unpack the SteamCMD files into the Steam folder
+  command: tar xf ../steamcmd_linux.tar.gz
+  args:
+    chdir: /home/steam/Steam
+
+- name: Run the SteamCmd for the first time to install files
+  command: ./steamcmd.sh +quit
+  args:
+    chdir: /home/steam/Steam

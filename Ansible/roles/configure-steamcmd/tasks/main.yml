@@ -1,0 +1,10 @@
+---
+- name: Create steam linux user
+  include_role:
+    name: configure-steamcmd
+    tasks_from: create-steam-user
+
+- name: Install Steam CMD
+  include_role:
+    name: configure-steamcmd
+    tasks_from: install-steamcmd

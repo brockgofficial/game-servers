@@ -1,0 +1,16 @@
+---
+- name: Clean the yum repos
+  become: yes
+  command: yum clean all
+
+- name: Update all the installed apps and yum repos
+  become: yes
+  command: yum update -y
+
+- name: Upgrade anything needed after the yum update
+  become: yes
+  command: yum upgrade -y
+
+- name: Install wget packages
+  become: yes
+  command: yum install wget -y

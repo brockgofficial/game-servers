@@ -1,0 +1,12 @@
+---
+- name: Include the tasks for setting up the server
+  become: yes
+  include_role:
+    name: configure-valheim-server
+    tasks_from: setup-valheim-ds
+
+- name: Include the tasks for setting up the server
+  become: yes
+  include_role:
+    name: configure-valheim-server
+    tasks_from: start-valheim-server

@@ -1,0 +1,5 @@
+---
+- name: Include the role with tasks to update yum
+  include_role:
+    name: configure-prerequisites
+    tasks_from: update-yum

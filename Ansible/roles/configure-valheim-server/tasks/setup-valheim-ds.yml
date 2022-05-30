@@ -1,0 +1,22 @@
+---
+- name: Make Valheim directory
+  file:
+    path: /home/steam/GameServers/Valheim
+    state: directory
+    recurse: yes
+    owner: steam
+    group: steam
+
+- name: Copy the start Valheim start file to the directory
+  template:
+    src: start-valheim.sh.j2
+    dest: /home/steam/GameServers/Valheim/start_valheim.sh
+    owner: steam
+    group: steam
+
+- name: Copy the service file to the system service location
+  copy:
+    src: roles/configure-valheim-server/files/server_files/valheim.service
+    dest: /etc/systemd/system/
+    owner: steam
+    group: steam

@@ -1,0 +1,6 @@
+---
+- name: Reload the daemon to register the new service
+  command: systemctl daemon-reload
+
+- name: Start the new valheim service
+  command: systemctl start valheim

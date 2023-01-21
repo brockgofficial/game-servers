@@ -15,5 +15,5 @@
         tasks_from: main
     - name: Role for configuring the valheim server
       include_role:
-        name: configure-valheim-server
+        name: valheim-server
         tasks_from: main
